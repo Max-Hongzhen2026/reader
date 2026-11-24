@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f9fc">
+  <meta name="description" content="A quiet reading space for Attention Is All You Need. Read the official paper and look up words with LexiSnap.">
+  <title>Attention Is All You Need — Folio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%237c6ac6'/%3E%3Cpath d='M18 18h13c5 0 8 3 8 8v23c-3-4-6-5-12-5h-9V18zm21 8c0-5 3-8 8-8v26c-4 0-6 1-8 5' fill='none' stroke='white' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root{--canvas:#f8f9fc;--paper:#fff;--ink:#292d3c;--muted:#7c8191;--line:#e9eaf0;--accent:#7966b7;--tint:#f0edf8;--sidebar:244px}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}button,select{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:4px}::selection{background:#dcd1f5;color:#242032}svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.icon-defs{position:absolute;width:0;height:0;overflow:hidden}.skip{position:fixed;top:-60px;left:20px;background:var(--paper);padding:12px;z-index:10}.skip:focus{top:12px}
+    .sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:var(--paper);border-right:1px solid var(--line);padding:34px 24px;display:flex;flex-direction:column;z-index:3;overflow-y:auto}.brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-size:32px;letter-spacing:-1.5px;padding:0 12px}.brand svg{width:30px;height:30px;color:var(--accent)}.brand-caption{font-size:12px;color:var(--muted);margin:10px 0 0 13px}.collection{margin:48px 0 32px}.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.collection .eyebrow,.contents .eyebrow{margin:0 13px 17px}.collection-item{display:flex;gap:11px;align-items:center;border-radius:8px;background:var(--tint);color:#6a579f;padding:13px 12px;font-size:13px;font-weight:500}.collection-item svg{width:18px;height:18px}.paper-name{font-family:Georgia,serif;line-height:1.65;font-size:16px;margin:0 13px 7px}.paper-subtitle{font-size:12px;color:var(--muted);margin:0 13px 23px;line-height:1.7}.contents nav{display:flex;flex-direction:column;gap:5px}.contents a{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted);padding:11px 13px;border-radius:6px}.contents a:hover{background:#f7f7fa;color:var(--ink)}.contents svg{width:16px;height:16px}.sidebar-bottom{margin-top:auto;padding:36px 13px 0}.sidebar-bottom>svg{color:#aaa0cb;width:24px;height:24px}.sidebar-bottom p{font-family:Georgia,serif;font-size:16px;line-height:1.6;color:#9293a1;margin:14px 0 0}.sidebar-bottom small{display:block;margin-top:18px;font-size:11px;color:#a0a2ae;letter-spacing:.04em}
+    .workspace{margin-left:var(--sidebar)}.toolbar{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid var(--line);background:var(--canvas);position:sticky;top:0;z-index:2;gap:14px}.breadcrumb{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--muted);white-space:nowrap}.breadcrumb svg{width:13px;height:13px;color:#aaaeb9}.breadcrumb strong{font-weight:400;color:#54596c}.tools{display:flex;align-items:center;gap:7px}.tool{height:34px;min-width:34px;border:0;background:transparent;color:#777c8c;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;padding:0 9px}.tool:hover{background:#ececf3;color:var(--ink)}.tool[aria-pressed="true"]{background:var(--tint);color:var(--accent)}.tool svg{width:17px;height:17px}.divider{height:18px;width:1px;background:#dfe1e9;margin:0 5px}.select-control{position:relative;display:flex;align-items:center;color:#777c8c;font-size:12px}.select-control>span{padding-left:6px}.select-control select{appearance:none;border:0;background:transparent;padding:8px 24px 8px 8px;color:#777c8c;font-size:12px;cursor:pointer;border-radius:6px}.select-control select:hover{background:#ececf3}.select-control svg{position:absolute;right:6px;pointer-events:none;width:12px;height:12px}
+    .paper-header{max-width:1120px;margin:0 auto;padding:33px 38px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}.kicker{color:var(--accent);font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;margin:0 0 11px}.paper-header h1{font-family:Georgia,"Times New Roman",serif;font-size:31px;line-height:1.2;font-weight:400;letter-spacing:-.6px;margin:0 0 10px}.metadata{font-size:12px;color:#8a8f9d;margin:0;line-height:1.7}.metadata .slash{color:#c8cbd4;margin:0 9px}.version{font-size:11px;line-height:1.7;color:#969baa;white-space:nowrap;text-align:right}.version a{color:var(--accent)}.pdf-stage{max-width:1120px;margin:0 auto;padding:0 24px}.pdf-wrap{height:calc(100vh - 240px);min-height:580px;background:white;border:1px solid #e4e6ed;border-radius:3px;overflow:hidden}.paper-frame{width:100%;height:100%;display:block;border:0;background:white}.source-bar{max-width:1120px;margin:0 auto;padding:13px 27px 24px;display:flex;justify-content:space-between;align-items:center;gap:15px;font-size:11px;color:#9297a5;line-height:1.7}.source-bar a{color:#7c6bb0;text-decoration:underline;text-underline-offset:3px}.source-bar details{position:relative}.source-bar summary{cursor:pointer;white-space:nowrap}.source-bar .help{position:absolute;bottom:28px;right:0;width:310px;border:1px solid var(--line);background:white;border-radius:10px;padding:18px;font-size:13px;line-height:1.8;box-shadow:0 8px 28px #28213310;color:#767c8c;z-index:4}.help p{margin:0 0 10px}.help p:last-child{margin:0}.focus-dock{display:none;position:fixed;right:18px;top:14px;z-index:8;gap:6px;align-items:center;background:#ffffffee;border:1px solid var(--line);border-radius:8px;padding:6px;box-shadow:0 3px 18px #29243b08}.focus-dock .tool{font-size:12px;color:#6f7483}.focus-mode .sidebar,.focus-mode .toolbar,.focus-mode .paper-header,.focus-mode .source-bar{display:none}.focus-mode .workspace{margin-left:0}.focus-mode{background:white;overflow:hidden}.focus-mode .pdf-stage{padding:0;max-width:none}.focus-mode .pdf-wrap{height:100dvh;min-height:0;border:0;border-radius:0}.focus-mode .focus-dock{display:flex;opacity:0;transition:opacity .18s}.focus-mode .focus-dock:hover,.focus-mode .focus-dock:focus-within,.focus-mode.show-exit .focus-dock{opacity:1}.focus-mode .focus-dock:focus-within{outline:0}.status{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#383443;color:#fff;padding:12px 18px;border-radius:8px;font-size:13px;z-index:9;max-width:90vw;line-height:1.65;opacity:0;pointer-events:none;transition:opacity .18s}.status.visible{opacity:1}
+    @media(max-width:1200px){:root{--sidebar:218px}.sidebar{padding:30px 17px}.toolbar{padding:0 20px}.breadcrumb .room,.breadcrumb svg{display:none}.paper-header{padding-left:26px;padding-right:26px}.pdf-stage{padding:0 16px}.version{display:none}}
+    @media(max-width:900px){:root{--sidebar:0px}.sidebar{display:none}.toolbar{height:64px}.pdf-wrap{height:calc(100vh - 225px);min-height:560px}.paper-header{padding-top:25px;padding-bottom:22px}.paper-header h1{font-size:29px}}
+    @media(max-width:600px){.toolbar{padding:0 12px;gap:6px}.breadcrumb{display:none}.tools{width:100%;justify-content:space-between;gap:3px}.tool{padding:0 7px}.divider{margin:0 2px}.paper-header{padding:24px 19px 20px}.paper-header h1{font-size:28px}.metadata{font-size:11px}.pdf-stage{padding:0}.pdf-wrap{border-left:0;border-right:0;border-radius:0;height:calc(100dvh - 214px);min-height:520px}.source-bar{padding:12px 16px 22px;align-items:flex-start}.source-bar>span{max-width:210px}.source-bar .help{width:min(310px,90vw)}.focus-dock{right:10px;top:10px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="book" viewBox="0 0 24 24"><path d="M3 4h5a4 4 0 0 1 4 4v13a5 5 0 0 0-4-2H3V4Zm18 0h-5a4 4 0 0 0-4 4v13a5 5 0 0 1 4-2h5V4Z"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M20 3C9 2 3 7 5 14s15 7 15-11Z"/><path d="m4 21 11-12M9 16l-1-5m4 2 5 1"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="down" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+    <symbol id="external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L11 13M10 4H4v16h16v-6"/></symbol>
+    <symbol id="bookmark-icon" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4V3Z"/></symbol>
+    <symbol id="expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </defs></svg>
+  <a class="skip" href="#paper">Skip to paper</a>
+  <aside class="sidebar" aria-label="Reading navigation">
+    <a class="brand" href="?" aria-label="Folio, reset reader"><svg aria-hidden="true"><use href="#book"/></svg>folio<span style="color:#a89acb">.</span></a>
+    <p class="brand-caption">A little space to think.</p>
+    <div class="collection"><p class="eyebrow">Your reading space</p><div class="collection-item"><svg aria-hidden="true"><use href="#book"/></svg>Artificial intelligence</div></div>
+    <div class="contents"><p class="eyebrow">Currently reading</p><p class="paper-name">Attention Is All<br>You Need</p><p class="paper-subtitle">Vaswani et al. · 2017<br>Advances in Neural Information<br>Processing Systems 30</p><nav aria-label="Original sources">
+      <a href="https://arxiv.org/html/1706.03762v7" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#book"/></svg>Read as HTML</a>
+      <a href="https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#external"/></svg>Original PDF</a>
+      <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#external"/></svg>Paper on arXiv</a>
+    </nav></div>
+    <div class="sidebar-bottom"><svg aria-hidden="true"><use href="#leaf"/></svg><p>Good ideas deserve<br>a little breathing room.</p><small>READ SLOWLY. THINK DEEPLY.</small></div>
+  </aside>
+  <div class="workspace">
+    <header class="toolbar" aria-label="Reader controls">
+      <div class="breadcrumb"><span class="room">Reading room</span><svg aria-hidden="true"><use href="#chevron"/></svg><strong>Artificial intelligence</strong></div>
+      <div class="tools">
+        <label class="select-control"><span>Page</span><select id="page" aria-label="Jump to PDF page"><option value="1">1 / 11</option><option value="2">2 / 11</option><option value="3">3 / 11</option><option value="4">4 / 11</option><option value="5">5 / 11</option><option value="6">6 / 11</option><option value="7">7 / 11</option><option value="8">8 / 11</option><option value="9">9 / 11</option><option value="10">10 / 11</option><option value="11">11 / 11</option></select><svg aria-hidden="true"><use href="#down"/></svg></label>
+        <label class="select-control"><select id="zoom" aria-label="PDF zoom" title="阅读缩放 / PDF zoom"><option value="page-width">Fit width</option><option value="100">100%</option><option value="125">125%</option><option value="150">150%</option><option value="175">175%</option></select><svg aria-hidden="true"><use href="#down"/></svg></label>
+        <span class="divider" aria-hidden="true"></span>
+        <button class="tool" id="bookmark" type="button" aria-pressed="false" aria-label="Bookmark paper" title="收藏论文 / Bookmark paper"><svg aria-hidden="true"><use href="#bookmark-icon"/></svg></button>
+        <button class="tool" id="focus" type="button" aria-pressed="false" title="截图模式，隐藏阅读器外框 / Focus mode"><svg aria-hidden="true"><use href="#expand"/></svg><span>Focus</span></button>
+      </div>
+    </header>
+    <section class="paper-header" aria-label="Paper information"><div><p class="kicker">Machine learning · Research paper</p><h1>Attention Is All You Need</h1><p class="metadata">Ashish Vaswani et al.<span class="slash">/</span>NeurIPS 2017<span class="slash">/</span>11 pages</p></div><div class="version">Conference edition<br><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">arXiv:1706.03762</a></div></section>
+    <main class="pdf-stage" id="paper"><div class="pdf-wrap"><iframe id="paper-frame" class="paper-frame" title="Attention Is All You Need — official conference PDF" src="https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf#page=1&amp;view=FitH&amp;toolbar=0&amp;navpanes=0" allow="fullscreen"></iframe></div></main>
+    <footer class="source-bar"><span>Paper served by <a href="https://papers.nips.cc/paper/7181-attention-is-all-you-need" target="_blank" rel="noopener noreferrer">NeurIPS Proceedings</a>.<br>PDF not visible? <a id="direct-pdf" href="https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf" target="_blank" rel="noopener noreferrer">Open the original</a> or <a href="https://arxiv.org/html/1706.03762v7" target="_blank" rel="noopener noreferrer">read HTML</a>.</span><details><summary>截图小提示</summary><div class="help"><p>在论文中选中英文，再用你平时的词拾取词方式，显示真实释义窗。</p><p><b>Focus</b> 隐藏阅读器外框。将鼠标移到右上角可找到退出按钮；当焦点位于阅读器外框时，也可以按 Esc 退出。</p><p>如果 PDF 内无法取词，点击 <b>Read as HTML</b> 打开 arXiv 原文网页。阅读缩放与跳页效果取决于浏览器的 PDF 阅读器。</p></div></details></footer>
+  </div>
+  <div class="focus-dock" aria-label="Focus mode controls"><a class="tool" id="focus-source" href="https://arxiv.org/html/1706.03762v7" target="_blank" rel="noopener noreferrer">HTML</a><button class="tool" id="exit-focus" type="button"><svg aria-hidden="true"><use href="#close"/></svg>Exit focus</button></div>
+  <div class="status" role="status" aria-live="polite" id="status"></div>
+  <script>
+    (() => {
+      'use strict';
+      const pdf = 'https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf';
+      const byId = id => document.getElementById(id);
+      const body = document.body;
+      const params = new URLSearchParams(location.search);
+      const validPage = n => Number.isInteger(n) && n >= 1 && n <= 11;
+      const page = Number(params.get('page') || 1);
+      byId('page').value = String(validPage(page) ? page : 1);
+      const zooms = ['page-width', '100', '125', '150', '175'];
+      if (zooms.includes(params.get('zoom'))) byId('zoom').value = params.get('zoom');
+      let messageTimer;
+      let focusTimer;
+      const read = key => { try { return localStorage.getItem('folio-attention-' + key); } catch { return null; } };
+      const save = (key, value) => { try { localStorage.setItem('folio-attention-' + key, String(value)); } catch {} };
+      function notify(message) {
+        clearTimeout(messageTimer);
+        byId('status').textContent = message;
+        byId('status').classList.add('visible');
+        messageTimer = setTimeout(() => byId('status').classList.remove('visible'), 3500);
+      }
+      function updateAddress() {
+        const url = new URL(location.href);
+        const page = byId('page').value, zoom = byId('zoom').value;
+        if (page !== '1') url.searchParams.set('page', page); else url.searchParams.delete('page');
+        if (zoom !== 'page-width') url.searchParams.set('zoom', zoom); else url.searchParams.delete('zoom');
+        if (body.classList.contains('focus-mode')) url.searchParams.set('focus', '1'); else url.searchParams.delete('focus');
+        try { history.replaceState(null, '', url); } catch {}
+      }
+      function renderPaper() {
+        const zoom = byId('zoom').value;
+        const fragment = '#page=' + byId('page').value + (zoom === 'page-width' ? '&view=FitH' : '&zoom=' + zoom) + '&toolbar=0&navpanes=0';
+        byId('paper-frame').src = pdf + fragment;
+        byId('direct-pdf').href = pdf + fragment;
+        updateAddress();
+      }
+      byId('page').addEventListener('change', renderPaper);
+      byId('zoom').addEventListener('change', renderPaper);
+      const bookmark = byId('bookmark');
+      bookmark.setAttribute('aria-pressed', String(read('bookmark') === 'true'));
+      bookmark.addEventListener('click', () => {
+        const enabled = bookmark.getAttribute('aria-pressed') !== 'true';
+        bookmark.setAttribute('aria-pressed', String(enabled));
+        save('bookmark', enabled);
+        notify(enabled ? 'Paper bookmarked on this device' : 'Bookmark removed');
+      });
+      function focus(enabled, announce = true) {
+        body.classList.toggle('focus-mode', enabled);
+        byId('focus').setAttribute('aria-pressed', String(enabled));
+        updateAddress();
+        clearTimeout(focusTimer);
+        body.classList.toggle('show-exit', enabled && announce);
+        if (enabled && announce) {
+          notify('截图模式 · 将鼠标移至右上角可退出');
+          focusTimer = setTimeout(() => body.classList.remove('show-exit'), 3500);
+        }
+        if (!enabled && announce) byId('focus').focus({preventScroll:true});
+      }
+      byId('focus').addEventListener('click', () => focus(true));
+      byId('exit-focus').addEventListener('click', () => focus(false));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && body.classList.contains('focus-mode')) focus(false);
+      });
+      if (params.get('focus') === '1') focus(true, false);
+      renderPaper();
+    })();
+  </script>
+</body>
+</html>
