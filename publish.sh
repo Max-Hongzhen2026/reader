@@ -34,7 +34,7 @@ cp "$reader_source/index.html" "$reader_source/README.md" "$reader_source/.nojek
 cp "$reader_source/publish.sh" .
 git add -- index.html README.md .nojekyll publish.sh
 if ! git diff --cached --quiet; then
-  git -c "user.name=$reader_login" -c "user.email=$reader_login@users.noreply.github.com" commit -m 'Build Folio reader for Attention Is All You Need'
+  git -c "user.name=$reader_login" -c "user.email=$reader_login@users.noreply.github.com" commit -m 'Publish Folio with open-access article and paper switcher'
 fi
 git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin "HEAD:$reader_branch"
 reader_commit="$(git rev-parse HEAD)"
